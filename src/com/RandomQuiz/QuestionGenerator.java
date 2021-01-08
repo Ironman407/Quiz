@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class QuestionGenerator {
-
+    GradeCalculator myCalculator = new GradeCalculator();
     Scanner myScanner = new Scanner(System.in);
     int numberOfQuestions;
     public void getQuestionAmount() {
@@ -25,14 +25,17 @@ public class QuestionGenerator {
     public void setQuestions ( int numberOfQuestions){
         String[] countries = {"Finland", "Sweden", "Japan", "Italy", "France", "Iraq", "Spain"};
         String[] capitals = {"Helsinki", "Stockholm", "Tokyo", "Rome", "Paris", "Baghdad", "Madrid"};
+        int numCorrect = 0;
         for (int i = 0; i < numberOfQuestions; i++) {
             System.out.println("What is the capital of " + countries[i]);
             String answer = myScanner.next();
             if (answer.toUpperCase(Locale.ROOT).equals(capitals[i].toUpperCase(Locale.ROOT))) {
                 System.out.println(answer + " is correct");
+                numCorrect++;
             } else
                 System.out.println(answer + " is incorrect");
         }
+        myCalculator.CalculateGrade(numCorrect, numberOfQuestions);
 
     }
 
